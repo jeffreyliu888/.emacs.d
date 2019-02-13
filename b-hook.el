@@ -21,6 +21,11 @@
        (120 (message "Gnus timed out."))
      ad-do-it))))
 
+(add-hook 'find-file-hook
+	  (lambda()
+	    (dolist (pattern '("/Applications/Emacs.app/Contents/Resources/lisp/.*"))
+	      (if (string-match (expand-file-name pattern) buffer-file-name)
+		  (read-only-mode)))))
 
 (provide 'b-hook)
 ;;;b-hook.el ends here
